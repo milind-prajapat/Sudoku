@@ -53,8 +53,6 @@
     <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.tensorflow_stats.pb" />
     <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.trace.json.gz" />
     <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.xplane.pb" />
-    <Content Include="x_train.pickle" />
-    <Content Include="y_train.pickle" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
