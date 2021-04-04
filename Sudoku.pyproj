@@ -5,7 +5,7 @@
     <ProjectGuid>aec6878b-aada-4902-bb78-471a3779d3ac</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>Startup_File.py</StartupFile>
+    <StartupFile>Solution.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,36 +23,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Generate_Dataset.py" />
-    <Compile Include="Startup_File.py" />
+    <Compile Include="Solution.py" />
     <Compile Include="Sudoku_Grabber.py" />
     <Compile Include="Sudoku_Reader.py" />
     <Compile Include="Sudoku_Solver.py" />
     <Compile Include="Train_Model.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="3-Conv-100-Nodes-2-Dense-CNN-Printed-Digits\" />
-    <Folder Include="3-Conv-100-Nodes-2-Dense-CNN-Printed-Digits\assets\" />
-    <Folder Include="3-Conv-100-Nodes-2-Dense-CNN-Printed-Digits\variables\" />
-    <Folder Include="logs\" />
-    <Folder Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\" />
-    <Folder Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\" />
-    <Folder Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\" />
-    <Folder Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\" />
-    <Folder Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="3-Conv-100-Nodes-2-Dense-CNN-Printed-Digits\saved_model.pb" />
-    <Content Include="3-Conv-100-Nodes-2-Dense-CNN-Printed-Digits\variables\variables.data-00000-of-00001" />
-    <Content Include="3-Conv-100-Nodes-2-Dense-CNN-Printed-Digits\variables\variables.index" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\events.out.tfevents.1608537414.HP-PAVILION.14068.200.v2" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\events.out.tfevents.1608537416.HP-PAVILION.profile-empty" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.input_pipeline.pb" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.kernel_stats.pb" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.memory_profile.json.gz" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.overview_page.pb" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.tensorflow_stats.pb" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.trace.json.gz" />
-    <Content Include="logs\3-Conv-100-Nodes-2-Dense-Printed-Digits\train\plugins\profile\2020_12_21_07_56_56\HP-PAVILION.xplane.pb" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
