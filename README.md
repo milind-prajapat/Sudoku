@@ -1,5 +1,5 @@
 # Sudoku
-Sudoku Detection and Solving
+Sudoku Detection And Solver
 
 ## References
 1. [Dataset](https://drive.google.com/file/d/1UYUyG0Z_33_IiMjOhy48w_ek38j-68dx/view?usp=sharing)
