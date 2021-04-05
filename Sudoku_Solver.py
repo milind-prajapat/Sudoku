@@ -393,17 +393,20 @@ def Solve(Grid):
     if not is_Sudoku_Valid(Grid):
         return None, None
 
-    Cells(Grid)
-    E_Cells = copy.deepcopy(Empty_Cells)
-    Constraint = Constraints(Grid)
-    while(Update_Constraints(Grid, Constraint, E_Cells)):
-        pass
+    try:
+        Cells(Grid)
+        E_Cells = copy.deepcopy(Empty_Cells)
+        Constraint = Constraints(Grid)
+        while(Update_Constraints(Grid, Constraint, E_Cells)):
+            pass
 
-    List = [Constraint]
-    Empty_List = [E_Cells]
-    Grid_List = [Grid]
-    while len(Empty_List[-1]):
-        x,y = Empty_List[-1][0]
-        Update(x,y)
+        List = [Constraint]
+        Empty_List = [E_Cells]
+        Grid_List = [Grid]
+        while len(Empty_List[-1]):
+            x,y = Empty_List[-1][0]
+            Update(x,y)
+    except:
+        return  None, None
         
     return Grid_List[-1], Empty_Cells
