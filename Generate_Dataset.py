@@ -1,38 +1,72 @@
-import warnings
-warnings.simplefilter("ignore")
-
 import os
 import random
 import pickle
 import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
 
-Training_Data = []
+from keras.utils import to_categorical
 
-for File in os.listdir("Fonts"):
-    df = pd.read_csv(os.path.join("Fonts", File))
-    df = df[df["m_label"].isin(list(range(ord('0'), ord('9') + 1)))]
+Files = os.listdir('Fonts')
+
+Files_To_Remove = ['GOTHICE.csv',
+                  'JOKERMAN.csv',
+                  'GILL.csv',
+                  'OCRB.csv',
+                  'CURLZ.csv',
+                  'SNAP.csv',
+                  'VIN.csv',
+                  'BROADWAY.csv',
+                  'E13B.csv',
+                  'GIGI.csv',
+                  'CHILLER.csv',
+                  'BLACKADDER.csv',
+                  'COUNTRYBLUEPRINT.csv',
+                  'RAGE.csv',
+                  'NUMERICS.csv',
+                  'CREDITCARD.csv',
+                  'OCRA.csv']
+
+for File in Files_To_Remove:
+    Files.remove(File)
+
+Data = [[] for _ in range(10)]
+
+for File in Files:
+    df = pd.read_csv(os.path.join('Fonts', File))
+    df = df[df['m_label'].isin(list(range(ord('0'), ord('9') + 1)))]
     df.reset_index(inplace = True)
 
     for row in df.index:
-        img = list(df.loc[row, "r0c0":"r19c19"])
+        List = list(df.loc[row, 'r0c0':'r19c19'])
+
         Image = []
         for i in range(0, 39, 2):
-            Image.append(img[i * 10:(i + 2) * 10])
-        img = np.array(Image, np.uint8)
-        Training_Data.append([img, df["m_label"][row] - ord('0')])
+            Image.append(List[i * 10:(i + 2) * 10])
+        Image = np.array(Image, np.uint8)
 
+        Data[df['m_label'][row] - ord('0')].append(Image)
+
+Training_Data = [[Image, index] for index, Feature in enumerate(Data) for Image in Feature[200:]]
 random.shuffle(Training_Data)
 
-x_train = []
-y_train = []
+Validation_Data = [[Sample, index] for index, Feature in enumerate(Validation_Data) for Sample in Feature[:200]]
+random.shuffle(Validation_Data)
 
-for x, y in Training_Data:
-    x_train.append(x)
-    y_train.append(y)
+x_train, y_train = np.array([Sample[0] for Sample in Training_Data], dtype = np.float64), to_categorical(np.array([Sample[1] for Sample in Training_Data], dtype = np.int64))
+x_validation, y_validation = np.array([Sample[0] for Sample in Validation_Data], dtype = np.float64), to_categorical(np.array([Sample[1] for Sample in Validation_Data], dtype = np.int64))
 
-with open('x_train.pickle', 'wb') as p:
-    pickle.dump(x_train, p)
-with open('y_train.pickle', 'wb') as p:
-    pickle.dump(y_train, p)
+pickle_out = open(os.path.join(Path, 'Dataset', 'x_train.pickle'), 'wb')
+pickle.dump(x_train, pickle_out)
+pickle_out.close()
+ 
+pickle_out = open(os.path.join(Path, 'Dataset', 'y_train.pickle'), 'wb')
+pickle.dump(y_train, pickle_out)
+pickle_out.close()
+
+pickle_out = open(os.path.join(Path, 'Dataset', 'x_validation.pickle'), 'wb')
+pickle.dump(x_validation, pickle_out)
+pickle_out.close()
+ 
+pickle_out = open(os.path.join(Path, 'Dataset', 'y_validation.pickle'), 'wb')
+pickle.dump(y_validation, pickle_out)
+pickle_out.close()

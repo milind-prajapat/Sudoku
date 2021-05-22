@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
 
-model = load_model("Printed-Digits-CNN-Model")
+model = load_model('Printed-Digits-CNN-Model')
 
 def Read(Image_List):
     global model

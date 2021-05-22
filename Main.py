@@ -5,7 +5,7 @@ import Sudoku_Grabber
 import Sudoku_Reader
 import Sudoku_Solver
 
-URL = "http://192.168.43.1:8080/shot.jpg"
+URL = 'http://192.168.43.1:8080/shot.jpg'
 
 Solved = False
 while True:
@@ -29,7 +29,7 @@ while True:
         origin = (Centres[i * 9 + j][0] - 15,Centres[i * 9 + j][1] + 15)
         img = cv2.putText(img, str(Solution[i][j]), origin, cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0,0,255), 2, cv2.LINE_AA)
 
-    cv2.imshow("Live Video Feed", img)
+    cv2.imshow('Live Video Feed', img)
     if cv2.waitKey(1) == 27:
         break
         

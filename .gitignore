@@ -12,6 +12,7 @@
 *.pickle
 *.mp4
 *.zip
+*Fonts
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

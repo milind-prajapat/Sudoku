@@ -1,5 +1,5 @@
 import warnings
-warnings.simplefilter("ignore")
+warnings.simplefilter('ignore')
 
 import pickle
 import numpy as np
@@ -33,4 +33,4 @@ model.compile(optimizer = SGD(lr = 0.01, momentum = 0.9), loss = 'categorical_cr
 
 model.fit(x_train, y_train, epochs = 10)
 
-model.save("Printed-Digits-CNN-Model")
+model.save('Printed-Digits-CNN-Model')
