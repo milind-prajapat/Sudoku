@@ -5,7 +5,7 @@
     <ProjectGuid>aec6878b-aada-4902-bb78-471a3779d3ac</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>Generate_Dataset.py</StartupFile>
+    <StartupFile>Main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
