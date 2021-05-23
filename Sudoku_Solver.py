@@ -5,6 +5,7 @@ def Cells(Grid):
     
     Empty_Cells = []
     Filled_Cells = []
+
     for i in range(9):
         for j in range(9):
             if Grid[i][j] == 0:
@@ -20,7 +21,7 @@ def isValid(Grid, x, y, Value):
             return False
         if Grid[x][i] == Value:
             return False
-        if Grid[X + int(i/3)][Y + i % 3] == Value:
+        if Grid[X + int(i / 3)][Y + i % 3] == Value:
             return False
     
     return True
@@ -40,12 +41,14 @@ def Possibilities(Grid, x, y):
 def Constraints(Grid):
     global Empty_Cells, Filled_Cells
 
-    List = [[0]*9 for _ in range(9)]
+    List = [[0] * 9 for _ in range(9)]
+
     for x,y in Empty_Cells:
         List[x][y] = Possibilities(Grid, x, y)
 
     for x,y in Filled_Cells:
         List[x][y] = [Grid[x][y]]
+
     return List
 
 def Check(L):
@@ -97,17 +100,21 @@ def Partial(L1, L2):
 
 def Update_Constraints(Grid, Constraint, Empty_Cells):
     isUpdated = False
+
     for x in range(3):
         for y in range(3):
             Elements = []
+
             for i in range(x * 3, x * 3 + 3):
                 for j in range(y * 3, y * 3 + 3):
                     Elements.extend(Constraint[i][j])
 
-            Row_Pairs = [[],[],[]]
-            Col_Pairs = [[],[],[]]
+            Row_Pairs = [[], [], []]
+            Col_Pairs = [[], [], []]
+
             for Value in set(Elements):
-                Pos = [[0]*3 for _ in range(3)]
+                Pos = [[0] * 3 for _ in range(3)]
+
                 for i in range(x * 3, x * 3 + 3):
                     for j in range(y * 3, y * 3 + 3):
                         if Value in Constraint[i][j]:
@@ -126,30 +133,39 @@ def Update_Constraints(Grid, Constraint, Empty_Cells):
                 if Row_Check:
                     if not Col_Check:
                         Row_Pairs[R_N].append(Value)
+
                     for i in range(0, y * 3):
                         if Value in Constraint[R_N + (3 * x)][i]:
                             Constraint[R_N + (3 * x)][i].remove(Value) 
+                            
                             if not len(Constraint[R_N + (3 * x)][i]):
                                 return -1
                             isUpdated = True
+
                     for i in range(y * 3 + 3, 9):
                         if Value in Constraint[R_N + (3 * x)][i]:
                             Constraint[R_N + (3 * x)][i].remove(Value)
+                            
                             if not len(Constraint[R_N + (3 * x)][i]):
                                 return -1
                             isUpdated = True
+
                 if Col_Check:
                     if not Row_Check:
                         Col_Pairs[C_N].append(Value)
+
                     for i in range(0, x * 3):
                         if Value in Constraint[i][C_N + (3 * y)]:
                             Constraint[i][C_N + (3 * y)].remove(Value) 
+                            
                             if not len(Constraint[i][C_N + (3 * y)]):
                                 return -1
                             isUpdated = True
+
                     for i in range(x * 3 + 3, 9):
                         if Value in Constraint[i][C_N + (3 * y)]:
                             Constraint[i][C_N + (3 * y)].remove(Value) 
+                            
                             if not len(Constraint[i][C_N + (3 * y)]):
                                 return -1
                             isUpdated = True
@@ -157,12 +173,14 @@ def Update_Constraints(Grid, Constraint, Empty_Cells):
             for R_N, R in enumerate(Row_Pairs):
                 if len(R) == 2 or len(R) == 3:
                     Count = 0
+
                     for i in range(3):
                         if Complete(R,Constraint[R_N + (3 * x)][i + (3 * y)]):
                             Count += 1
                         elif Partial(R,Constraint[R_N + (3 * x)][i + (3 * y)]):
                             Count = 0
                             break
+
                     if Count == len(R):
                         for i in range(3):
                             if Complete(R, Constraint[R_N + (3 * x)][i + (3 * y)]):
@@ -171,12 +189,14 @@ def Update_Constraints(Grid, Constraint, Empty_Cells):
             for C_N, C in enumerate(Col_Pairs):
                 if len(C) == 2 or len(C) == 3:
                     Count = 0
+
                     for i in range(3):
                         if Complete(C, Constraint[(3 * x) + i][C_N + (3 * y)]):
                             Count += 1
                         elif Partial(C, Constraint[(3 * x) + i][C_N + (3 * y)]):
                             Count = 0
                             break
+
                     if Count == len(C):
                         for i in range(3):
                             if Complete(C, Constraint[(3 * x) + i][C_N + (3 * y)]):
@@ -184,11 +204,14 @@ def Update_Constraints(Grid, Constraint, Empty_Cells):
 
     for x in range(9):
         Elements = []
+
         for y in range(9):
             Elements.extend(Constraint[x][y])
+
         for Value in set(Elements):
             Count = 0
             X, Y = -1,-1
+
             for y in range(9):
                 if Value in Constraint[x][y]:
                     Count += 1
@@ -196,38 +219,49 @@ def Update_Constraints(Grid, Constraint, Empty_Cells):
                 if Count > 1:
                     X, Y = -1,-1
                     break
+
             if Count == 1:
-                if [X,Y] not in Empty_Cells:
+                if [X, Y] not in Empty_Cells:
                     continue
+
                 Constraint[X][Y] = [Value]
                 Grid[X][Y] = Value
-                Empty_Cells.remove([X,Y])
+                Empty_Cells.remove([X, Y])
                 isUpdated = True
                 
                 for i in range(0, X):
                     if Value in Constraint[i][Y]:
                         Constraint[i][Y].remove(Value)
+                        
                         if not len(Constraint[i][Y]):
                             return -1
+
                 for i in range(X + 1, 9):
                     if Value in Constraint[i][Y]:
                         Constraint[i][Y].remove(Value) 
+                        
                         if not len(Constraint[i][Y]):
                             return -1
     
-                cX, cY = int(X/3), int(Y/3)
+                cX, cY = int(X / 3), int(Y / 3)
+
                 for i in range(3):
                     for j in range(3):
-                        if Value in Constraint[i + cX * 3][j + cY * 3] and (i + cX * 3,j + cY * 3) != (X,Y):
+                        if Value in Constraint[i + cX * 3][j + cY * 3] and (i + cX * 3,j + cY * 3) != (X, Y):
                             Constraint[i + cX * 3][j + cY * 3].remove(Value)
+                            
                             if not len(Constraint[i + cX * 3][j + cY * 3]):
                                 return -1
+
         Elements = []
+
         for y in range(9):
             Elements.extend(Constraint[y][x])
+
         for Value in set(Elements):
             Count = 0
             X, Y = -1, -1
+
             for y in range(9):
                 if Value in Constraint[y][x]:
                     Count += 1
@@ -235,62 +269,75 @@ def Update_Constraints(Grid, Constraint, Empty_Cells):
                 if Count > 1:
                     X, Y = -1, -1
                     break
+
             if Count == 1:
-                if [X,Y] not in Empty_Cells:
+                if [X, Y] not in Empty_Cells:
                     continue
+
                 Constraint[X][Y] = [Value]
                 Grid[X][Y] = Value
-                Empty_Cells.remove([X,Y])
+                Empty_Cells.remove([X, Y])
                 isUpdated = True
                 
                 for i in range(0, Y):
                     if Value in Constraint[X][i]:
                         Constraint[X][i].remove(Value)
+                        
                         if not len(Constraint[X][i]):
                             return -1
+
                 for i in range(Y + 1, 9):
                     if Value in Constraint[X][i]:
                         Constraint[X][i].remove(Value)
+                        
                         if not len(Constraint[X][i]):
                             return -1
                 
-                cX, cY = int(X/3), int(Y/3)
+                cX, cY = int(X / 3), int(Y / 3)
+
                 for i in range(3):
                     for j in range(3):
                         if Value in Constraint[i + cX * 3][j + cY * 3] and (i + cX * 3,j + cY * 3) != (X, Y):
                             Constraint[i + cX * 3][j + cY * 3].remove(Value)
+                            
                             if not len(Constraint[i + cX * 3][j + cY * 3]):
                                 return -1      
                             
     return isUpdated
 
-def Update(x,y):
+def Update(x, y):
     global Grid_List, List, Empty_List
     
     while True:
         if Grid_List[-1][x][y] == 0:
             List.append(copy.deepcopy(List[-1]))
             Empty_List.append(copy.deepcopy(Empty_List[-1]))
+            
             Value = List[-1][x][y][0] 
             Grid_List[-1][x][y] = Value
             List[-1][x][y] = [Value]
         else:
             Index = List[-1][x][y].index(Grid_List[-1][x][y]) + 1
+            
             if Index == len(List[-1][x][y]):
                 Grid_List.remove(Grid_List[-1])
                 List.remove(List[-1])
                 Empty_List.remove(Empty_List[-1])
                 return False
+            
             List.append(copy.deepcopy(List[-1]))
             Empty_List.append(copy.deepcopy(Empty_List[-1]))
+            
             Value = List[-1][x][y][Index]
             Grid_List[-1][x][y] = Value
             List[-1][x][y] = [Value]
 
         Check = False
+
         for i in range(0, y):
             if Value in List[-1][x][i]:
                 List[-1][x][i].remove(Value)
+                
                 if not len(List[-1][x][i]):
                     Check = True
                     break
@@ -302,6 +349,7 @@ def Update(x,y):
         for i in range(y + 1, 9):
             if Value in List[-1][x][i]:
                 List[-1][x][i].remove(Value)
+                
                 if not len(List[-1][x][i]):
                     Check = True
                     break
@@ -314,6 +362,7 @@ def Update(x,y):
         for i in range(0, x):
             if Value in List[-1][i][y]:
                 List[-1][i][y].remove(Value)   
+                
                 if not len(List[-1][i][y]):
                     Check = True
                     break
@@ -326,6 +375,7 @@ def Update(x,y):
         for i in range(x + 1, 9):
             if Value in List[-1][i][y]:
                 List[-1][i][y].remove(Value)
+                
                 if not len(List[-1][i][y]):
                     Check = True
                     break
@@ -335,12 +385,13 @@ def Update(x,y):
             Empty_List.remove(Empty_List[-1])
             continue
 
-        cX, cY = int(x/3), int(y/3)
+        cX, cY = int(x / 3), int(y / 3)
 
         for i in range(3):
             for j in range(3):
                 if Value in List[-1][i + cX * 3][j + cY * 3] and (i + cX * 3,j + cY * 3) != (x, y):
                     List[-1][i + cX * 3][j + cY * 3].remove(Value)
+                    
                     if not len(List[-1][i + cX * 3][j + cY * 3]):
                         Check = True
                         break
@@ -351,10 +402,13 @@ def Update(x,y):
             continue
 
         Grid_List.append(copy.deepcopy(Grid_List[-1]))
+
         while True:
             Val = Update_Constraints(Grid_List[-1], List[-1], Empty_List[-1])
+            
             if not Val:
                 return True
+            
             if Val == -1:
                 Grid_List.remove(Grid_List[-1])
                 List.remove(List[-1])
@@ -365,19 +419,24 @@ def is_Sudoku_Valid(Grid):
     for i in range(9):
         Row = []
         Col = []
+        
         for j in range(9):
             if Grid[i][j] != 0:
                 Row.append(Grid[i][j])
+            
             if Grid[j][i] != 0:
                 Col.append(Grid[j][i])
+        
         if len(Row) != len(set(Row)):
             return False
+        
         if len(Col) != len(set(Col)):
             return False
 
     for x in range(3):
         for y in range(3):
             Cell = []
+
             for i in range(x * 3, x * 3 + 3):
                 for j in range(y * 3, y * 3 + 3):
                     if Grid[i][j] != 0:
@@ -397,16 +456,18 @@ def Solve(Grid):
         Cells(Grid)
         E_Cells = copy.deepcopy(Empty_Cells)
         Constraint = Constraints(Grid)
+
         while(Update_Constraints(Grid, Constraint, E_Cells)):
             pass
 
         List = [Constraint]
         Empty_List = [E_Cells]
         Grid_List = [Grid]
+
         while len(Empty_List[-1]):
-            x,y = Empty_List[-1][0]
-            Update(x,y)
+            x, y = Empty_List[-1][0]
+            Update(x, y)
     except:
-        return  None, None
+        return None, None
         
     return Grid_List[-1], Empty_Cells
