@@ -42,18 +42,23 @@ def Grab(Image):
     _, threshx = cv2.threshold(sobelx, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     _, threshy = cv2.threshold(sobely, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
-    kernelx = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 6))
+    kernelx = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 10))
     kernely = cv2.getStructuringElement(cv2.MORPH_RECT, (10, 2))
 
     threshx = cv2.morphologyEx(threshx, cv2.MORPH_DILATE, kernelx, iterations = 1)
     threshy = cv2.morphologyEx(threshy, cv2.MORPH_DILATE, kernely, iterations = 1)
+
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (4, 4))
+
+    threshx = cv2.morphologyEx(threshx, cv2.MORPH_CROSS, kernel, iterations = 1)
+    threshy = cv2.morphologyEx(threshy, cv2.MORPH_CLOSE, kernel, iterations = 1)
 
     contours, _ = cv2.findContours(threshx, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
     for contour in contours:
         _, _, w, h = cv2.boundingRect(contour)
 
-        if h / w > 5:
+        if h / w > 5 and h > Image.shape[0] * 0.5:
             cv2.drawContours(threshx, [contour], 0, 255, -1)
         else:
             cv2.drawContours(threshx, [contour], 0, 0, -1)
@@ -62,8 +67,8 @@ def Grab(Image):
 
     for contour in contours:
         _, _, w, h = cv2.boundingRect(contour)
-
-        if w / h > 5:
+        
+        if w / h > 5 and w > Image.shape[1] * 0.5:
             cv2.drawContours(threshy, [contour], 0, 255, -1)
         else:
             cv2.drawContours(threshy, [contour], 0, 0, -1)
@@ -105,6 +110,7 @@ def Grab(Image):
 
     size = (45 * cols, 45 * cols)
     pixels = int(45 * cols / (cols - 1))
+    output = np.zeros((45 * cols, 45 * cols, 3), np.uint8)
 
     Image_List = []
     Centre = []
@@ -125,7 +131,9 @@ def Grab(Image):
                 cX += src[i][0]
                 cY += src[i][1]
             
-            Image_List.append(warp.copy()[3:-3, 3:-3, :])
+            Image_List.append(warp.copy()[5:-5, 5:-5, :])
             Centre.append([int(cX / 4), int(cY / 4)])
-    
+
+            output[x * pixels: (x + 1) * pixels - 1, y * pixels:(y + 1) * pixels - 1] = warp.copy()
+
     return Image_List, Centre

@@ -22,11 +22,9 @@ def Read(Image_List):
         if len(contours):
             x, y, w, h = cv2.boundingRect(contours[0])
 
-            if w * h >= 9 and w >= 3 and h >= 3:
+            if w * h > 12 and w >= 3.5 and h >= 3.5:
                 size = max(w, h)
-
-                square_fit = np.zeros((size, size, 3), np.uint8)
-                square_fit.fill(255)
+                square_fit = np.zeros((size, size), np.uint8)
 
                 square_fit[int((size - h) / 2):int((size + h) / 2), int((size - w) / 2):int((size + w) / 2)] = thresh[y:y + h, x:x + w]
                 square_fit = cv2.resize(square_fit, (20, 20), interpolation = cv2.INTER_AREA)
