@@ -3,7 +3,7 @@ Sudoku Recognition And Its Solution Using Image Processing And Constraint Progra
 
 This work allows optical recognition and solution of the sudoku. Image processing techniques enable its detection and extraction of the digits. The extracted digits are then recognized using a convolutional neural network combined with a deep neural network. Constraint programming combined with backtracking enables the faster solution of the sudoku, no matter how hard it is.
 
-Sample images used for recognition and solution can be found in [Sudoku](https://github.com/milind-prajapat/Sudoku/tree/main/Sudoku) directory of the repository
+Sample images used for recognition and solution can be found in [Sudoku](https://github.com/milind-prajapat/Sudoku/tree/main/Sudoku) directory of the repository.
 
 ## Instructions To Use
 To perform recognition and solution of the sudoku, accumulate the images in a directory and then provide the complete path to the directory in [Main.py](https://github.com/milind-prajapat/Sudoku/blob/main/Main.py), images with solved sudoku will be saved in the [Solution](https://github.com/milind-prajapat/Sudoku/tree/main/Solution) directory. You can also use live video feed through the webcam using [Webcam.py](https://github.com/milind-prajapat/Sudoku/blob/main/Webcam.py). Currently, the code is configured to use the phone's camera for better resolution using [IP Webcam](https://play.google.com/store/apps/details?id=com.pas.webcam) android application.
