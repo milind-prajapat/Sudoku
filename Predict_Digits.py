@@ -7,7 +7,7 @@ from tensorflow.keras.models import load_model
 model = load_model(os.path.join('Model', 'best_val_loss.hdf5'))
 model.predict(np.zeros((20, 20), np.uint8).reshape(-1, 20, 20, 1))
 
-def Read(Image_List):
+def Predict(Image_List):
     Grid = [[0] * 9 for _ in range(9)]
 
     for index, Image in enumerate(Image_List):

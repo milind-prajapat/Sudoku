@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
 
-import Sudoku_Grabber
-import Sudoku_Reader
-import Sudoku_Solver
+import Extract_Digits
+import Predict_Digits
+import Solve_Sudoku
 
 from urllib import request
 
@@ -15,14 +15,14 @@ while True:
     Image = cv2.imdecode(Image, -1)
     Image = Image[200:1000, 200:1000] # For (1920, 1080) Resolution
     
-    Image_List, Centres = Sudoku_Grabber.Grab(Image)
+    Image_List, Centres = Extract_Digits.Extract(Image)
     
     if not Image_List:
         Empty_Cells = []
         Solved = False
     elif not Solved:
-        Grid = Sudoku_Reader.Read(Image_List)
-        Solution, Empty_Cells = Sudoku_Solver.Solve(Grid)
+        Grid = Predict_Digits.Predict(Image_List)
+        Solution, Empty_Cells = Solve_Sudoku.Solve(Grid)
 
         if Solution:
             Solved = True

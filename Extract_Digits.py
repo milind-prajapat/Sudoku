@@ -2,7 +2,7 @@ import cv2
 import math
 import numpy as np
 
-def Grab(Image):
+def Extract(Image):
     gray = cv2.cvtColor(Image, cv2.COLOR_BGR2GRAY)
     
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))

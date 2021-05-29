@@ -30,9 +30,9 @@
     </Compile>
     <Compile Include="Split_Dataset.py" />
     <Compile Include="Main.py" />
-    <Compile Include="Sudoku_Grabber.py" />
-    <Compile Include="Sudoku_Reader.py" />
-    <Compile Include="Sudoku_Solver.py" />
+    <Compile Include="Extract_Digits.py" />
+    <Compile Include="Predict_Digits.py" />
+    <Compile Include="Solve_Sudoku.py" />
     <Compile Include="Model.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
