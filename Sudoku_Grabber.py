@@ -20,7 +20,10 @@ def Grab(Image):
     gray = np.array(cv2.normalize(div, div, 0, 255, cv2.NORM_MINMAX), np.uint8)
 
     blur = cv2.GaussianBlur(gray, (5, 5), 0)
-    edges = cv2.Canny(blur, 180, 180, apertureSize = 3)
+    edges = cv2.Canny(blur, 150, 150, apertureSize = 3)
+
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    edges = cv2.morphologyEx(edges, cv2.MORPH_DILATE, kernel)
 
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     
@@ -110,6 +113,7 @@ def Grab(Image):
 
     size = (45 * cols, 45 * cols)
     pixels = int(45 * cols / (cols - 1))
+    output = np.zeros((45 * cols, 45 * cols, 3), np.uint8)
 
     Centre = []
     Image_List = []
@@ -132,5 +136,6 @@ def Grab(Image):
                 
             Centre.append([int(cX / 4), int(cY / 4)])
             Image_List.append(warp.copy()[5:-5, 5:-5, :])
+            output[x * pixels: (x + 1) * pixels - 1, y * pixels:(y + 1) * pixels - 1] = warp.copy()
 
     return Image_List, Centre

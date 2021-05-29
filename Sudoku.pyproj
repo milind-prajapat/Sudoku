@@ -25,6 +25,9 @@
     <Compile Include="Evaluate_Model.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Webcam.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Split_Dataset.py" />
     <Compile Include="Main.py" />
     <Compile Include="Sudoku_Grabber.py" />
