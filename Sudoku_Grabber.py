@@ -110,7 +110,6 @@ def Grab(Image):
 
     size = (45 * cols, 45 * cols)
     pixels = int(45 * cols / (cols - 1))
-    output = np.zeros((45 * cols, 45 * cols, 3), np.uint8)
 
     Centre = []
     Image_List = []
@@ -133,7 +132,5 @@ def Grab(Image):
                 
             Centre.append([int(cX / 4), int(cY / 4)])
             Image_List.append(warp.copy()[5:-5, 5:-5, :])
-
-            output[x * pixels: (x + 1) * pixels - 1, y * pixels:(y + 1) * pixels - 1] = warp.copy()
 
     return Image_List, Centre
