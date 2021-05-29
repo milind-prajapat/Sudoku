@@ -7,15 +7,15 @@ import Sudoku_Solver
 
 from urllib import request
 
+Solved = False
 URL = 'http://192.168.43.1:8080/shot.jpg'
 
-Solved = False
 while True:
     img_arr = np.array(bytearray(request.urlopen(URL).read()), dtype = np.uint8)
     img = cv2.imdecode(img_arr, -1)
     img = img[200:1000, 200:1000] # For (1920, 1080) Resolution
     
-    Image_List, Centres, Area = Sudoku_Grabber.Grab(img)
+    Image_List, Centres = Sudoku_Grabber.Grab(img)
     
     if not Image_List:
         Empty_Cells = []
@@ -31,7 +31,7 @@ while True:
 
     for i, j in Empty_Cells:
         origin = (Centres[i * 9 + j][0] - 15, Centres[i * 9 + j][1] + 15)
-        img = cv2.putText(img, str(Solution[i][j]), origin, cv2.FONT_HERSHEY_SIMPLEX, Area / 18, (0, 100, 0), 3, cv2.LINE_AA)
+        img = cv2.putText(img, str(Solution[i][j]), origin, cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 100, 0), 3, cv2.LINE_AA)
 
     cv2.imshow('Live Video Feed', img)
     
