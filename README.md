@@ -16,6 +16,12 @@ You can then either run the code directly on visual studio using [Sudoku.sln](ht
 
 ## Model Performance
 
+**Table.** Classification Report on Validation Data 
+
+|  | accuracy_score | precision_score | recall_score | f1_score|
+| --- | :---: | :---: | :---: | ---: |
+| Model    |      0.993     |      0.9931     |   0.993  |  0.9936 |
+
 ## Features
 
 ## Limitations
