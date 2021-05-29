@@ -5,6 +5,7 @@ import numpy as np
 from tensorflow.keras.models import load_model
 
 model = load_model(os.path.join('Model', 'best_val_loss.hdf5'))
+model.predict(np.zeros((20, 20), np.uint8).reshape(-1, 20, 20, 1))
 
 def Read(Image_List):
     Grid = [[0] * 9 for _ in range(9)]
@@ -22,7 +23,7 @@ def Read(Image_List):
         if len(contours):
             x, y, w, h = cv2.boundingRect(contours[0])
 
-            if w * h > 12 and w >= 3.5 and h >= 3.5:
+            if w >= 6 and h >= 12:
                 size = max(w, h)
                 square_fit = np.zeros((size, size), np.uint8)
 

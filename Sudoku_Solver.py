@@ -481,7 +481,7 @@ def Solve(Grid):
         while len(Empty_List[-1]):
             x, y = Empty_List[-1][0]
             Update(x, y)
-    except:
+    except IndexError:
         return None, None
         
     return Grid_List[-1], Empty_Cells
