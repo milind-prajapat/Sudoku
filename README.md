@@ -18,7 +18,9 @@ You can then either run the code directly on visual studio using [Sudoku.sln](ht
 * [Model.py](https://github.com/milind-prajapat/Sudoku/blob/main/Model.py) is used for training convolution neural network
 * [Evaluate_Model.py](https://github.com/milind-prajapat/Sudoku/blob/main/Evaluate_Model.py) is used for evaluating the convolution neural network
 
-## Digit Extraction And Solution
+## Sudoku Recoginition And Solution
+
+![ezgif-6-aac833debae6](https://user-images.githubusercontent.com/59139752/120095352-2e60d680-c143-11eb-8fc7-4df7e826b669.gif)
 
 ## Model Performance
 
