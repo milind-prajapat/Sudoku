@@ -11,6 +11,12 @@ To perform recognition and solution of the sudoku, accumulate the images in a di
 You can then either run the code directly on visual studio using [Sudoku.sln](https://github.com/milind-prajapat/Sudoku/blob/main/Sudoku.sln) or can run individual python files.
 
 ## Structure
+* [Extract_Digits.py](https://github.com/milind-prajapat/Sudoku/blob/main/Extract_Digits.py) is used for recognition of sudoku and extraction of digits from it
+* [Predict_Digits.py](https://github.com/milind-prajapat/Sudoku/blob/main/Predict_Digits.py) is used for taking the prediction of the extracted digits
+* [Solve_Sudoku.py](https://github.com/milind-prajapat/Sudoku/blob/main/Solve_Sudoku.py) is used for solving the recognized sudoku
+* [Split_Dataset.py](https://github.com/milind-prajapat/Sudoku/blob/main/Split_Dataset.py) is used for splitting the dataset into training and validation sets
+* [Model.py](https://github.com/milind-prajapat/Sudoku/blob/main/Model.py) is used for training convolution neural network
+* [Evaluate_Model.py](https://github.com/milind-prajapat/Sudoku/blob/main/Evaluate_Model.py) is used for evaluating the convolution neural network
 
 ## Digit Extraction And Solution
 
