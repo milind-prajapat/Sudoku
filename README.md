@@ -1,7 +1,7 @@
 # Sudoku
 Sudoku Recognition And Its Solution Using Image Processing And Constraint Programming And Backtracking
 
-This work allows optical recognition and solution of the sudoku. Image processing techniques enable its detection and extraction of the digits. The extracted digits are then recognized using a convolutional neural network combined with a deep neural network. Constraint programming combined with backtracking enables the faster solution of the sudoku, no matter how hard it is.
+This work allows optical recognition and solution of the sudoku. Image processing techniques enable its detection and extraction of digits. The extracted digits are then recognized using a convolutional neural network combined with a deep neural network. Constraint programming combined with backtracking enables the faster solution of the sudoku, no matter how hard it is.
 
 Sample images used for recognition and solution can be found in [Sudoku](https://github.com/milind-prajapat/Sudoku/tree/main/Sudoku) directory of the repository.
 
@@ -29,8 +29,15 @@ You can then either run the code directly on visual studio using [Sudoku.sln](ht
 | Model    |      0.993     |      0.9931     |   0.993  |  0.9936 |
 
 ## Features
+1. **Image processing** enables the recognition of the sudoku
+2. **Data augmentation** using image data generator class, rotated, shifted, sheared and zoomed
+3. **Convolution neural network** combined with a deep neural network
+4. **Constraint programming** combined with backtracking enables faster solutions to the sudoku
 
 ## Limitations
+1. Sudoku with excess noise and highly slanted sudoku might fail to recognize
+2. Sudoku in images with the lesser quality might also fail to recognize
+3. Incorrect prediction of the extracted digits might cause the formation of incorrect sudoku or sudoku having no solution
 
 ## References
 1. [Printed English Characters](https://drive.google.com/file/d/1UYUyG0Z_33_IiMjOhy48w_ek38j-68dx/view?usp=sharing)
