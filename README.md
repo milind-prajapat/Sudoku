@@ -8,7 +8,7 @@ Sample images used for recognition and solution can be found in the [Sudoku](htt
 ## Instructions To Use
 To perform recognition and solution of the sudoku, accumulate the images in a directory and then provide the complete path to the directory in [Main.py](https://github.com/milind-prajapat/Sudoku/blob/main/Main.py). Images with solved sudoku will be saved in the [Solution](https://github.com/milind-prajapat/Sudoku/tree/main/Solution) directory. You can also use live video feed through the webcam using [Webcam.py](https://github.com/milind-prajapat/Sudoku/blob/main/Webcam.py). Currently, the code is configured to use the phone's camera for better resolution using the [IP Webcam](https://play.google.com/store/apps/details?id=com.pas.webcam) android application.
 
-You can then either run the code directly on visual studio using [Sudoku.sln](https://github.com/milind-prajapat/Sudoku/blob/main/Sudoku.sln) or can run individual python files.
+You can then either run the code directly on the visual studio using [Sudoku.sln](https://github.com/milind-prajapat/Sudoku/blob/main/Sudoku.sln) or can run individual python files.
 
 ## Structure
 * [Extract_Digits.py](https://github.com/milind-prajapat/Sudoku/blob/main/Extract_Digits.py) is used for recognition of sudoku and extraction of digits from it
