@@ -1,5 +1,5 @@
 # Sudoku
-Sudoku Recognition And Its Solution Using Image Processing And Constraint Programming And Backtracking
+Sudoku Recognition And Its Solution Using Image Processing, Constraint Programming And Backtracking
 
 This work allows optical recognition and solution of the sudoku. Image processing techniques enable its detection and extraction of digits. The extracted digits are then recognized using a convolutional neural network. Constraint programming combined with backtracking enables the faster solution of the sudoku, no matter how hard it is.
 
