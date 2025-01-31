@@ -44,5 +44,5 @@ You can then either run the code directly on the visual studio using [Sudoku.sln
 3. Incorrect prediction of the extracted digits might cause the formation of incorrect sudoku or sudoku having no solution
 
 ## References
-1. [Printed English Characters](https://drive.google.com/file/d/1UYUyG0Z_33_IiMjOhy48w_ek38j-68dx/view?usp=sharing)
-2. [Webcam Demonstration](https://drive.google.com/file/d/1NDWFiYbbc5GfrwAFLoWxFhMlrgRaR47R/view?usp=sharing)
+1. [Printed English Characters](https://drive.google.com/file/d/1hX_x-4QN2XdhGBEkqGaPp9vatmPYsaQz/view?usp=drive_link)
+2. [Webcam Demonstration](https://drive.google.com/file/d/1A0IC55nBwzFl4PdF1wJ2rPh99Y7LYaxg/view?usp=drive_link)
